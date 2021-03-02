@@ -16,12 +16,30 @@ namespace API.Controllers
             _context = context;
         }
 
+        /// <summary>
+        /// Get all Activities
+        /// </summary>
+        /// <remarks>
+        /// Sample request:
+        ///
+        ///     GET /api/activities
+        ///
+        /// </remarks>
         [HttpGet]
         public async Task<ActionResult<List<Activity>>> GetActivities()
         {
             return await _context.Activities.ToListAsync();
         }
 
+        /// <summary>
+        /// Get activity by id
+        /// </summary>
+        /// <remarks>
+        /// Sample request:
+        ///
+        ///     GET /api/activities/{id}
+        ///
+        /// </remarks>
         [HttpGet("{id}")]
         public async Task<ActionResult<Activity>> GetActivity(Guid id)
         {
