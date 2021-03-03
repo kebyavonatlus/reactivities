@@ -20,7 +20,7 @@ function App() {
         <ul>
           {
             activities.map((activity: any) => (
-              <li key={activity.id}></li>
+              <li key={activity.id}>{activity.title}</li>
             ))
           }
         </ul>
