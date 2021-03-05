@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using System.Reflection;
 using Application.Activities;
+using Application.Core;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -54,8 +55,6 @@ namespace API
 
             });
 
-            services.AddMediatR(typeof(List.Handler).Assembly);
-
             services.AddDbContext<DataContext>(opt =>
             {
                 opt.UseSqlite(_config.GetConnectionString("DefaultConnection"));
@@ -68,6 +67,10 @@ namespace API
                     policy.AllowAnyMethod().AllowAnyHeader().WithOrigins("http://localhost:3000");
                 });
             });
+
+            services.AddMediatR(typeof(List.Handler).Assembly);
+
+            services.AddAutoMapper(typeof(MappingProfiles).Assembly);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
