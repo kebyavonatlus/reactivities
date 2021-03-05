@@ -1,6 +1,8 @@
 using System;
 using System.IO;
 using System.Reflection;
+using Application.Activities;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -49,15 +51,20 @@ namespace API
                 var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
                 c.IncludeXmlComments(xmlPath);
+
             });
+
+            services.AddMediatR(typeof(List.Handler).Assembly);
 
             services.AddDbContext<DataContext>(opt =>
             {
                 opt.UseSqlite(_config.GetConnectionString("DefaultConnection"));
             });
 
-            services.AddCors(opt => {
-                opt.AddPolicy("CorsPolicy", policy => {
+            services.AddCors(opt =>
+            {
+                opt.AddPolicy("CorsPolicy", policy =>
+                {
                     policy.AllowAnyMethod().AllowAnyHeader().WithOrigins("http://localhost:3000");
                 });
             });
