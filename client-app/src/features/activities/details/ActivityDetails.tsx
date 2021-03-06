@@ -1,23 +1,23 @@
 import React from "react";
-import { Button, Card, Icon, Image } from "semantic-ui-react";
+import { Button, Card, Image } from "semantic-ui-react";
 import { Activity } from "../../../app/models/activity";
 
 interface Props {
-    activity: Activity | undefined;
+    activity: Activity;
     cancelSelectedActivity: () => void;
 }
 
 export default function ActivityDetais({ activity, cancelSelectedActivity}: Props) {
     return (
         <Card fluid>
-            <Image src={`/assets/categoryImages/${ activity != undefined ? activity.category : ''}.jpg`} />
+            <Image src={`/assets/categoryImages/${ activity.category}.jpg`} />
             <Card.Content>
-                <Card.Header>{activity != undefined ? activity.title : ''}</Card.Header>
+                <Card.Header>{activity.title}</Card.Header>
                 <Card.Meta>
-                    <span>{activity != undefined ? activity.date : ''}</span>
+                    <span>{activity.date}</span>
                 </Card.Meta>
                 <Card.Description>
-                    {activity != undefined ? activity.description : ''}
+                    {activity.description}
                 </Card.Description>
             </Card.Content>
             <Card.Content extra>
