@@ -12,30 +12,13 @@ namespace API.Controllers
 {
     public class ActivitiesController : BaseApiController
     {
-        /// <summary>
-        /// Get all Activities
-        /// </summary>
-        /// <remarks>
-        /// Sample request:
-        ///
-        ///     GET /api/activities
-        ///
-        /// </remarks>
+
         [HttpGet]
         public async Task<ActionResult<List<Activity>>> GetActivities()
         {
             return await Mediator.Send(new List.Query());
         }
 
-        /// <summary>
-        /// Get activity by id
-        /// </summary>
-        /// <remarks>
-        /// Sample request:
-        ///
-        ///     GET /api/activities/{id}
-        ///
-        /// </remarks>
         [HttpGet("{id}")]
         public async Task<ActionResult<Activity>> GetActivity(Guid id)
         {
